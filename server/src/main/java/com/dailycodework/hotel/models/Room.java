@@ -42,7 +42,7 @@ public class Room {
 	@Column(name = "is_booked")
 	private boolean isBooked = false;
 	
-	@Lob // บอกว่า field นี้จะจัดเก็บข้อมูลขนาดใหญ่
+	@Lob // บอกว่า field นี้จะจัดเก็บข้อมูลขนาดใหญ่ 
 	@Column(name = "photo")
 	private Blob photo;
 	
