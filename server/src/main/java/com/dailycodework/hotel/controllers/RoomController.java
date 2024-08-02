@@ -14,7 +14,7 @@ import com.dailycodework.hotel.responses.RoomResponse;
 import com.dailycodework.hotel.services.IRoomService;
 
 @Controller
-@RequestMapping("/rooms")
+@RequestMapping("/api/rooms")
 public class RoomController {
 	private final IRoomService roomService;
 
