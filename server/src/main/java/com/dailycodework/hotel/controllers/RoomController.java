@@ -30,7 +30,7 @@ public class RoomController {
 
 			RoomResponse response = new RoomResponse(room.getId(), room.getRoomType(), room.getRoomPrice());
 
-			return ResponseEntity.status(HttpStatus.OK).body(response);
+			return ResponseEntity.status(HttpStatus.CREATED).body(response);
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
