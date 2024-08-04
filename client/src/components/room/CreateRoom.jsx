@@ -30,9 +30,12 @@ export default function CreateRoom() {
 
     const handleImageChange = (e) => {
         const selectedImage = e.target.files[0];
+        console.log(selectedImage);
 
         setRoom({...room, photo: selectedImage});
         setPhotoPreview(URL.createObjectURL(selectedImage));
+
+        console.log(room)
     }
 
     const handleSubmit = async (e) => {
@@ -43,9 +46,10 @@ export default function CreateRoom() {
 
             if (success !== undefined) {
                 setSuccessMsg("A new room was added to the databsae");   
-                setNewRoom({ photo: null, type: "", price: "" });
+                setRoom({ photo: null, type: "", price: "" });
                 setPhotoPreview("");
                 setErrorMsg("");
+                document.getElementById("photo").value = null; // for clear input file
             } else {
                 setErrorMsg("Error adding room");
             }
@@ -60,6 +64,8 @@ export default function CreateRoom() {
                 <div className="row justify-content-center">
                     <div className="col-md-8 col-lg-6">
                         <h2 className="mt-5 mb-2">Create room</h2>
+                        {successMsg && <p className="alert alert-success">{successMsg}</p>}
+                        {errorMsg && <p className="alert alert-danger">{errorMsg}</p>}
                         <form onSubmit={handleSubmit}>
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="roomType">Room type</label>
