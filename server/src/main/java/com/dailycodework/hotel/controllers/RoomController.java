@@ -73,7 +73,7 @@ public class RoomController {
 				byte[] photoBytes = this.roomService.getRoomPhotoByRoomId(room.getId());
 				
 				if (photoBytes != null && photoBytes.length > 0) {
-					String bsae64Photo = Base64.getDecoder().decode(photoBytes).toString();
+					String bsae64Photo = new String(Base64.getDecoder().decode(photoBytes));
 					RoomResponse roomResponse = getRoomResponse(room);
 					roomResponse.setPhoto(bsae64Photo);
 					
@@ -92,14 +92,14 @@ public class RoomController {
 
 	private RoomResponse getRoomResponse(Room room) {
 		List<BookedRoom> bookedRooms = gettBookingByRoomId(room.getId());
-		List<BookedRoomResponse> bookedResponse = bookedRooms
-				.stream()
-				.map(bookedRoom -> new BookedRoomResponse(
-						bookedRoom.getBookingId(), 
-						bookedRoom.getCheckInDate(), 
-						bookedRoom.getCheckOutDate(), 
-						bookedRoom.getBookingConfirmationCode()))
-				.toList();
+//		List<BookedRoomResponse> bookedResponse = bookedRooms
+//				.stream()
+//				.map(bookedRoom -> new BookedRoomResponse(
+//						bookedRoom.getBookingId(), 
+//						bookedRoom.getCheckInDate(), 
+//						bookedRoom.getCheckOutDate(), 
+//						bookedRoom.getBookingConfirmationCode()))
+//				.toList();
 		byte[] photoBytes = null;
 		Blob photoBlob = room.getPhoto();
 		if (photoBlob != null) {
@@ -116,7 +116,7 @@ public class RoomController {
 				room.getRoomPrice(), 
 				room.isBooked(),
 				photoBytes,
-				bookedResponse);
+				null);
 	}
 
 	private List<BookedRoom> gettBookingByRoomId(Long roomId) {
