@@ -19,7 +19,6 @@ import java.util.List;
 import com.dailycodework.hotel.exceptions.PhotoRetrivalException;
 import com.dailycodework.hotel.models.BookedRoom;
 import com.dailycodework.hotel.models.Room;
-import com.dailycodework.hotel.responses.BookedRoomResponse;
 import com.dailycodework.hotel.responses.RoomResponse;
 import com.dailycodework.hotel.services.IBookedRoomService;
 import com.dailycodework.hotel.services.IRoomService;
@@ -73,7 +72,7 @@ public class RoomController {
 				byte[] photoBytes = this.roomService.getRoomPhotoByRoomId(room.getId());
 				
 				if (photoBytes != null && photoBytes.length > 0) {
-					String bsae64Photo = new String(Base64.getDecoder().decode(photoBytes));
+					String bsae64Photo = Base64.getEncoder().encodeToString(photoBytes);
 					RoomResponse roomResponse = getRoomResponse(room);
 					roomResponse.setPhoto(bsae64Photo);
 					

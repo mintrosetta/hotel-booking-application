@@ -61,6 +61,7 @@ public class RoomServiceImpl implements IRoomService {
 		
 		Blob photoBlob = optionalRoom.get().getPhoto();
 		if (photoBlob != null) {
+			// photoBlob.getBytes(indexStart, length)
 			return photoBlob.getBytes(1, (int) photoBlob.length()); // get from first byte to last byte
 		}
 		
