@@ -40,3 +40,13 @@ export async function getAllRooms() {
         throw new Error("Error fetching rooms");
     }
 }
+
+// delete room by id
+export async function deleteRoom(roomId) {
+    try {
+        const result = await api.delete("/rooms/" + roomId);
+        return result.data;
+    } catch (ex) {
+        throw new Error("Error deleting room " + ex.message);
+    }
+}
