@@ -13,6 +13,7 @@ import javax.sql.rowset.serial.SerialException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dailycodework.hotel.exceptions.InternalServerException;
 import com.dailycodework.hotel.exceptions.ResourceNotFoundException;
 import com.dailycodework.hotel.models.Room;
 import com.dailycodework.hotel.repositories.RoomRepository;
@@ -75,7 +76,23 @@ public class RoomServiceImpl implements IRoomService {
 		if (optionalRoom.isPresent()) {
 			this.roomRepository.deleteById(id);
 		}
+	}
+
+	@Override
+	public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes) {
+		Room room = this.roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room not found"));
 		
+		if (roomType != null) room.setRoomType(roomType);
+		if (roomPrice != null) room.setRoomPrice(roomPrice);
+		if (photoBytes != null && photoBytes.length > 0) {
+			try {
+				room.setPhoto(new SerialBlob(photoBytes));
+			} catch (SQLException ex) {
+				throw new InternalServerException("Error updating room");
+			}
+		};
+		
+		return this.roomRepository.save(room);
 	}
 
 }
