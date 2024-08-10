@@ -20,5 +20,7 @@ public interface IRoomService {
 	List<Room> getRooms();
 
 	byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException;
+
+	void deleteRoom(Long id);
 	
 }

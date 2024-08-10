@@ -107,7 +107,7 @@ export default function ExistingRoom() {
                                     <td>{room.roomType}</td>
                                     <td>{room.roomPrice}</td>
                                     <td>
-                                        <Link to={"/edit-room/" + room.id}>
+                                        <Link to={"/edit/" + room.id}>
                                             <span className="btn btn-info btn-sm">
                                                 <FaEye />
                                             </span>
