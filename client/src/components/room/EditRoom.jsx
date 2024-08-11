@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRoomById, updateRoom } from "../utils/ApiFunction";
 import { useParams } from "react-router-dom";
+import RoomTypeSelector from "../common/RoomTypeSelector";
 
 export default function EditRoom() {
     const [room, setRoom] = useState({
@@ -15,12 +16,17 @@ export default function EditRoom() {
     const { roomId } = useParams();
     
     useEffect(() => {
+        console.log(roomId);
         const fetchRoom = async () => {
             try {
                 const roomData = await getRoomById(roomId);
-
-                setRoom(roomData);
-                setPhotoPreview(roomData.photo);
+                console.log(roomData)
+                setRoom({
+                    type: roomData.roomType,
+                    price: roomData.roomPrice,
+                    photo: roomData.photo
+                });
+                setPhotoPreview("data:image/png;base64," + roomData.photo);
             } catch (ex) {
                 console.log(ex.message);
             }
@@ -51,27 +57,27 @@ export default function EditRoom() {
 
         setRoom({...room, photo: selectedImage});
         setPhotoPreview(URL.createObjectURL(selectedImage));
-
         console.log(room)
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(roomId);
 
         try {
-            const success = await updateRoom(0, {
+            const success = await updateRoom(roomId, {
                 roomType: room.type,
                 roomPrice: room.price,
                 photo: room.photo
             });
 
-            if (success !== undefined && success.status === 200) {
+            if (success) {
                 setSuccessMsg("Room update successfully!");
                 
                 const updatedRoomData = await getRoomById(roomId);
                 setRoom(updatedRoomData);
 
-                setPhotoPreview(updatedRoomData.photo);
+                setPhotoPreview("data:image/png;base64," + success.photo);
                 setErrorMsg("");
                 document.getElementById("photo").value = null; // for clear input file
             } else {

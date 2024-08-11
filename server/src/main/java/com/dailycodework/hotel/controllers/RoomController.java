@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -153,6 +154,17 @@ public class RoomController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 		
+	}
+	
+	@GetMapping("/{roomId}")
+	public ResponseEntity<RoomResponse> getRoomById(@PathVariable Long roomId) {
+		Optional<Room> optionalRoom = this.roomService.getRoomById(roomId);
+		
+		if (optionalRoom.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		
+		RoomResponse response = this.getRoomResponse(optionalRoom.get());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(response); 
 	}
 	
 	private List<BookedRoom> gettBookingByRoomId(Long roomId) {

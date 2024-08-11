@@ -95,4 +95,9 @@ public class RoomServiceImpl implements IRoomService {
 		return this.roomRepository.save(room);
 	}
 
+	@Override
+	public Optional<Room> getRoomById(Long roomId) {
+		return this.roomRepository.findById(roomId);
+	}
+
 }
