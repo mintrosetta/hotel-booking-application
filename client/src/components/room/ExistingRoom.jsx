@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { deleteRoom, getAllRooms } from "../utils/ApiFunction";
-import { Col } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator";
-import { FaTrashAlt, FaEye, FaEdit } from "react-icons/fa";
+import { FaTrashAlt, FaEye, FaEdit, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function ExistingRoom() {
@@ -84,13 +84,19 @@ export default function ExistingRoom() {
                 <p>Loding existing room</p>
             ) : (
                 <section className="mt-5 mb-5 container">
-                    <div className="d-flex justify-content-center mb-3 mt-5">
+                    <div className="d-flex justify-content-between align-items-center mb-3 mt-5">
                         <h2>Existing rooms</h2>
                     </div>
-                    <Col md={6} className="mb-3 mb-md-0">
-                        <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
-                    </Col>
-
+                    <Row>
+                        <Col md={6} className="mb-3 mb-md-0">
+                            <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
+                        </Col>
+                        <Col md={6} className="d-flex justify-content-end">
+                            <Link to={"/add-room"}>
+                                <FaPlus/> Add new room
+                            </Link>
+                        </Col>
+                    </Row>
                     <table className="table table-bordered table-hover">
                         <thead>
                             <tr className="text-center">

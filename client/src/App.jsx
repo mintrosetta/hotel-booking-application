@@ -15,6 +15,7 @@ function App() {
             <Route path='' element={<Home />} />
             <Route path='/edit/:roomId' element={<EditRoom />} />
             <Route path='/exiting-rooms' element={<ExistingRoom />} />
+            <Route path='/add-room' element={<CreateRoom />} />
           </Routes>
         </BrowserRouter>
       </main>

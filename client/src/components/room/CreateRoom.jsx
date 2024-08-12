@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createRoom } from "../utils/ApiFunction";
 import RoomTypeSelector from "../common/RoomTypeSelector";
+import { Link } from "react-router-dom";
 
 export default function CreateRoom() {
     const [room, setRoom] = useState({
@@ -83,6 +84,9 @@ export default function CreateRoom() {
                                 {photoPreview && <img src={photoPreview} alt="image preview room photo" style={{ maxWidth: "400px", maxHeight: "400px" }} className="mb-3"/>}
                             </div>
                             <div className="d-grid d-md-flex mt-2">
+                                <Link to={"/exiting-rooms"} className="btn btn-outline-info">
+                                    Back
+                                </Link>
                                 <button className="btn btn-outline-primary ml-5">Save Room</button>
                             </div>
                         </form>
