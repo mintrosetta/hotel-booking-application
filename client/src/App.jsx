@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Home from './components/home/Home'
 import EditRoom from './components/room/EditRoom'
 import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path='/add-room' element={<CreateRoom />} />
           </Routes>
         </BrowserRouter>
+        <Footer />
       </main>
     </>
   )

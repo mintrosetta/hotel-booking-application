@@ -5,15 +5,15 @@ export default function Footer() {
     
     return (
         <>
-            <Footer className="by-dark text-light py-3 footer mt-lg-5">
+            <div className="by-dark text-light py-3 footer mt-lg-5">
                 <Container>
                     <Row>
                         <Col xs={12} md={12} className="text-center">
-                            <p>&copy; {toDay.getFullYear()} lakeSide hotel</p>
+                            <p className="text-danger">&copy; {toDay.getFullYear()} lakeSide hotel</p>
                         </Col>
                     </Row>
                 </Container>
-            </Footer>
+            </div>
         </>
     );
 }
