@@ -10,12 +10,13 @@ export default function Room() {
     const [errorMsg, setErrorMsg] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [roomPerPage] = useState(6);
+    const [roomPerPage] = useState(3);
     const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
         getAllRooms().then((data) => {
+            console.log(data)
             setData(data);
             setFilteredData(data);
         }).catch((ex) => {
@@ -33,7 +34,11 @@ export default function Room() {
     const totalPages = Math.ceil(filteredData.length / roomPerPage);
     const renderRooms = () => {
         const startIndex = (currentPage - 1) * roomPerPage;
-        const endIndex = (startIndex * roomPerPage);
+        const endIndex = (currentPage * roomPerPage);
+
+        console.log(startIndex);
+        console.log(endIndex);
+        console.log(roomPerPage)
 
         return filteredData.slice(startIndex, endIndex).map((room) => <RoomCard key={room.id} room={room} />);
     }
