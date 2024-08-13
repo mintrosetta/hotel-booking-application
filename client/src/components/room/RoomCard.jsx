@@ -2,6 +2,7 @@ import { Card, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function RoomCard({room}) {
+
     return (
         <Col key={room.id} className="mb-4" xs={12}>
             <Card>
@@ -15,7 +16,7 @@ export default function RoomCard({room}) {
                     </div>
                     <div className="flex-grow-1 ml-3 px-5">
                         <Card.Title className="hotel-column">{room.roomType}</Card.Title>
-                        <Card.Title className="room-price">{room.price}</Card.Title>
+                        <Card.Title className="room-price">{room.roomPrice}</Card.Title>
                         <Card.Text className="">Some room information goes here the guest to read throungh</Card.Text>
                     </div>
                     <div className="flex-shrink-0 mt-3">

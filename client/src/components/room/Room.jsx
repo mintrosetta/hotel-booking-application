@@ -36,10 +36,6 @@ export default function Room() {
         const startIndex = (currentPage - 1) * roomPerPage;
         const endIndex = (currentPage * roomPerPage);
 
-        console.log(startIndex);
-        console.log(endIndex);
-        console.log(roomPerPage)
-
         return filteredData.slice(startIndex, endIndex).map((room) => <RoomCard key={room.id} room={room} />);
     }
 
