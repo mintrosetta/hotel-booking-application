@@ -1,7 +1,6 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import Header from "./Header";
 import { FaClock, FaCocktail, FaTshirt, FaUtensils, FaWifi } from "react-icons/fa";
-import RoomCard from "../room/RoomCard";
 
 export default function HotelService() {
     return (
