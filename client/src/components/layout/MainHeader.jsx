@@ -1,4 +1,4 @@
-export default function HeaderMain() {
+export default function MainHeader() {
     return (
         <header className="header-banner">
             <div className="overlay"></div>
